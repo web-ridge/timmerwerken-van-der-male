@@ -1,5 +1,5 @@
 const header=document.querySelector('.nav'),menu=document.querySelector('.menu'),nav=document.querySelector('.nav nav'),progress=document.querySelector('.scroll-progress'),heroPhoto=document.querySelector('.hero-photo img');
-addEventListener('scroll',()=>{header.classList.toggle('scrolled',scrollY>40);progress.style.transform=`scaleX(${scrollY/(document.documentElement.scrollHeight-innerHeight)})`;if(scrollY<innerHeight&&matchMedia('(prefers-reduced-motion: no-preference)').matches)heroPhoto.style.transform=`scale(1.04) translateY(${scrollY*.12}px)`},{passive:true});
+addEventListener('scroll',()=>{header.classList.toggle('scrolled',scrollY>40);if(progress)progress.style.transform=`scaleX(${scrollY/(document.documentElement.scrollHeight-innerHeight)})`;if(heroPhoto&&scrollY<innerHeight&&matchMedia('(prefers-reduced-motion: no-preference)').matches)heroPhoto.style.transform=`scale(1.04) translateY(${scrollY*.12}px)`},{passive:true});
 menu.addEventListener('click',()=>nav.classList.toggle('open'));
 document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
 const observer=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.12});
