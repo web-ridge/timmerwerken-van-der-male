@@ -1,6 +1,7 @@
-const header=document.querySelector('.nav'),menu=document.querySelector('.menu'),nav=document.querySelector('.nav nav');
-addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>40));
+const header=document.querySelector('.nav'),menu=document.querySelector('.menu'),nav=document.querySelector('.nav nav'),progress=document.querySelector('.scroll-progress'),heroPhoto=document.querySelector('.hero-photo img');
+addEventListener('scroll',()=>{header.classList.toggle('scrolled',scrollY>40);progress.style.transform=`scaleX(${scrollY/(document.documentElement.scrollHeight-innerHeight)})`;if(scrollY<innerHeight&&matchMedia('(prefers-reduced-motion: no-preference)').matches)heroPhoto.style.transform=`scale(1.04) translateY(${scrollY*.12}px)`},{passive:true});
 menu.addEventListener('click',()=>nav.classList.toggle('open'));
 document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
-const observer=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.12});
-document.querySelectorAll('section:not(.hero),.service-grid article,.gallery figure').forEach(el=>observer.observe(el));
+const observer=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('section:not(.hero),.service-grid article,.gallery figure,.process li').forEach((el,i)=>{el.style.setProperty('--delay',`${i%4*.09}s`);observer.observe(el)});
+document.querySelectorAll('.magnetic').forEach(el=>{el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect();el.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.1}px,${(e.clientY-r.top-r.height/2)*.15}px)`});el.addEventListener('pointerleave',()=>el.style.transform='')});
