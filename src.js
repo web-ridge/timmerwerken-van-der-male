@@ -3,5 +3,5 @@ addEventListener('scroll',()=>{header.classList.toggle('scrolled',scrollY>40);pr
 menu.addEventListener('click',()=>nav.classList.toggle('open'));
 document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
 const observer=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.12});
-document.querySelectorAll('section:not(.hero),.service-grid article,.gallery figure,.process li').forEach((el,i)=>{el.style.setProperty('--delay',`${i%4*.09}s`);observer.observe(el)});
+document.querySelectorAll('section:not(.hero),.service-card,.gallery figure,.process li').forEach((el,i)=>{el.style.setProperty('--delay',`${i%4*.09}s`);observer.observe(el)});
 document.querySelectorAll('.magnetic').forEach(el=>{el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect();el.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.1}px,${(e.clientY-r.top-r.height/2)*.15}px)`});el.addEventListener('pointerleave',()=>el.style.transform='')});
