@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://timmerwerken-van-der-male.pages.dev/sitemap.xml

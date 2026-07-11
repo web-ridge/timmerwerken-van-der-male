@@ -1,0 +1,1 @@
+{"name":"timmerwerken-van-der-male","private":true,"scripts":{"dev":"vite","build":"vite build","preview":"vite preview","deploy":"wrangler pages deploy dist --project-name timmerwerken-van-der-male"},"devDependencies":{"vite":"^7.0.0","wrangler":"^4.0.0"}}
